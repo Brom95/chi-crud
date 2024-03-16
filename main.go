@@ -27,6 +27,8 @@ func main() {
 		resultJson, err := json.Marshal(result)
 		if err != nil {
 			w.WriteHeader(http.StatusInternalServerError)
+			w.Write([]byte(err.Error()))
+
 			return
 		}
 		w.Write(resultJson)
@@ -37,6 +39,7 @@ func main() {
 		id, err := strconv.Atoi(idStr)
 		if err != nil {
 			w.WriteHeader(http.StatusBadRequest)
+			w.Write([]byte(err.Error()))
 			return
 		}
 		if _, ok := storage[id]; !ok {
@@ -47,6 +50,8 @@ func main() {
 		resultJson, err := json.Marshal(storage[id])
 		if err != nil {
 			w.WriteHeader(http.StatusInternalServerError)
+			w.Write([]byte(err.Error()))
+
 			return
 		}
 		w.Write(resultJson)
@@ -56,6 +61,7 @@ func main() {
 		err := json.NewDecoder(r.Body).Decode(&item)
 		if err != nil {
 			w.WriteHeader(http.StatusBadRequest)
+			w.Write([]byte(err.Error()))
 			return
 		}
 		item.Id = currentId
@@ -63,6 +69,8 @@ func main() {
 		jsonItem, err := json.Marshal(item)
 		if err != nil {
 			w.WriteHeader(http.StatusInternalServerError)
+			w.Write([]byte(err.Error()))
+			return
 		}
 		w.Write(jsonItem)
 		currentId += 1
@@ -74,6 +82,8 @@ func main() {
 		id, err := strconv.Atoi(idStr)
 		if err != nil {
 			w.WriteHeader(http.StatusBadRequest)
+			w.Write([]byte(err.Error()))
+
 			return
 		}
 		if _, ok := storage[id]; !ok {
@@ -84,6 +94,7 @@ func main() {
 		err = json.NewDecoder(r.Body).Decode(&item)
 		if err != nil {
 			w.WriteHeader(http.StatusBadRequest)
+			w.Write([]byte(err.Error()))
 			return
 		}
 		item.Id = id
@@ -91,6 +102,8 @@ func main() {
 		jsonItem, err := json.Marshal(item)
 		if err != nil {
 			w.WriteHeader(http.StatusInternalServerError)
+			w.Write([]byte(err.Error()))
+
 		}
 		w.Write(jsonItem)
 	})
@@ -100,6 +113,8 @@ func main() {
 		id, err := strconv.Atoi(idStr)
 		if err != nil {
 			w.WriteHeader(http.StatusBadRequest)
+			w.Write([]byte(err.Error()))
+
 			return
 		}
 		if _, ok := storage[id]; !ok {
