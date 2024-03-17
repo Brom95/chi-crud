@@ -20,7 +20,7 @@ func main() {
 	currentId := 1
 	storage := make(map[int]CrudItem)
 	r.Get("/crud-items/", func(w http.ResponseWriter, r *http.Request) {
-		result := make([]CrudItem, 0)
+		result := make([]CrudItem, 0, len(storage))
 		for _, item := range storage {
 			result = append(result, item)
 		}
