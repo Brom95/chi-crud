@@ -83,7 +83,6 @@ func main() {
 		if err != nil {
 			w.WriteHeader(http.StatusBadRequest)
 			w.Write([]byte(err.Error()))
-
 			return
 		}
 		if _, ok := storage[id]; !ok {
@@ -103,7 +102,7 @@ func main() {
 		if err != nil {
 			w.WriteHeader(http.StatusInternalServerError)
 			w.Write([]byte(err.Error()))
-
+			return
 		}
 		w.Write(jsonItem)
 	})
